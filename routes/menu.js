@@ -16,13 +16,13 @@ route.get("/", async (req, res) => {
  
 route.post("/", async (req, res) => {
     // res.send("/menu post")
-    console.log(req.body)
+    console.log(req.query)
     try {
         // let newMenu = await menuModel.insert({
         //     "name":"四喜丸子",
         //     "pic":""
         // })
-        res.status(201).json(newMenu)
+        res.status(200).json({})
     } catch (error) {
         console.error(error);
         res.status(500).send();
