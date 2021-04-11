@@ -4,11 +4,11 @@ class menuModel {
         this.result=null;
     }
     async insert(menu) {
-        console.log(menu)
+        console.log(menu,"添加成功")
         try {
             const col = await menuCollection();
             const result = await col.insertOne(menu);
-            return result.pos && result.ops[0];
+            return result.ops[0];
         } catch (error) {
             throw "添加文章到数据库出错"
         }

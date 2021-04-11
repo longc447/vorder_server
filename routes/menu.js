@@ -1,12 +1,11 @@
 const express = require("express");
 let route = express.Router();
 const menuModel = require("../model/menu");
+const resultMsg =require("../config/resultMsg");
+
 route.get("/", async (req, res) => {
-    // res.send("/menu get")
-    console.log("进来了")
     try {
         const menus=await menuModel.query({})
-        // res.send()
         res.status(200).json(menus)
     } catch (error) {
         console.error(error);
@@ -15,14 +14,9 @@ route.get("/", async (req, res) => {
 })
  
 route.post("/", async (req, res) => {
-    // res.send("/menu post")
-    console.log(req.query)
     try {
-        // let newMenu = await menuModel.insert({
-        //     "name":"四喜丸子",
-        //     "pic":""
-        // })
-        res.status(200).json({})
+        let newMenu = await menuModel.insert(req.query)
+        res.status(200).json(resultMsg.get(101,newMenu))
     } catch (error) {
         console.error(error);
         res.status(500).send();
