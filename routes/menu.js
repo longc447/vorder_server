@@ -23,5 +23,15 @@ route.post("/", async (req, res) => {
     }
 })
 
+route.delete("/",async(req,res)=>{
+    try {
+        let result=await menuModel.delete();
+        res.status(200).json(resultMsg.get(result?401:400))
+    } catch (error) {
+        console.error(error);
+        res.status(500).send();
+    }
+})
+
 
 module.exports = route;
