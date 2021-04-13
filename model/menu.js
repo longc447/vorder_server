@@ -10,13 +10,24 @@ class menuModel {
     async getCollection() {
         this.col = await menuCollection();
     }
+    async update(oldData,newData){
+        console.log(oldData,newData)
+
+        delete newData._id
+        try {
+            const result=await this.col.updateOne(oldData,{$set:newData})
+            return result.ops[0];
+        } catch (error) {
+            throw "更新menu到数据库出错"
+        }
+    }
     async insert(menu) {
         console.log(menu, "添加成功")
         try {
             const result = await this.col.insertOne(menu);
             return result.ops[0];
         } catch (error) {
-            throw "添加文章到数据库出错"
+            throw "添加menu到数据库出错"
         }
     }
     async query(menu) {
