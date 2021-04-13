@@ -22,10 +22,14 @@ route.post("/", async (req, res) => {
         res.status(500).send();
     }
 })
-
-route.delete("/",async(req,res)=>{
+route.put("/",async (req,res)=>{
+    console.log("put")
+    res.status(200)
+})
+route.delete("/:id",async(req,res)=>{
+    // console.log(req.query.id)
     try {
-        let result=await menuModel.delete();
+        let result=await menuModel.delete(req.params.id);
         res.status(200).json(resultMsg.get(result?401:400))
     } catch (error) {
         console.error(error);

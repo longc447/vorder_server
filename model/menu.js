@@ -27,9 +27,11 @@ class menuModel {
             throw "查询这里报错了"
         }
     }
-    async delete(menu) {
+    async delete(id) {
+        let query=await this.query({_id:ObjectId(id)});
+        console.log(query[0],"删除成功")
         try {
-            let result=await this.col.deleteOne({_id:ObjectId("607377c3bb5848c1ff49a51c")})
+            let result=await this.col.deleteOne({_id:ObjectId(id)})
             // let result = await this.col.deleteMany([
             //     { _id: "60737c903a57d0d422e8ad6c", name: "清炒油麦菜", detail: "香甜可口", tag: "热销" }, 
             //     { _id: "60737c9c3a57d0d422e8ad6d", name: "清炒油麦菜", detail: "香甜可口", tag: "热销" }
